@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Joshua Masasi Ombati — Mechanical Engineer</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bg: #0d0d0d;
+    --surface: #141414;
+    --accent: #c8a96e;
+    --accent-dim: rgba(200,169,110,0.12);
+    --text: #f0ece4;
+    --muted: #7a7570;
+    --border: rgba(200,169,110,0.2);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 24px 48px;
+    background: rgba(13,13,13,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--accent);
+    letter-spacing: 0.02em;
+  }
+
+  .nav-links { display: flex; gap: 36px; list-style: none; }
+
+  .nav-links a {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 13px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    transition: color 0.3s;
+  }
+
+  .nav-links a:hover { color: var(--accent); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding: 120px 48px 80px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -200px; right: -200px;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(200,169,110,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -100px; left: -100px;
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(200,169,110,0.04) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-text { max-width: 560px; }
+
+  .hero-tag {
+    display: inline-block;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    border: 1px solid var(--border);
+    padding: 6px 16px;
+    border-radius: 2px;
+    margin-bottom: 32px;
+    animation: fadeUp 0.8s ease both;
+  }
+
+  .hero-name {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(48px, 6vw, 80px);
+    font-weight: 900;
+    line-height: 1.0;
+    letter-spacing: -0.02em;
+    margin-bottom: 24px;
+    animation: fadeUp 0.8s 0.15s ease both;
+  }
+
+  .hero-name span { color: var(--accent); }
+
+  .hero-sub {
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--muted);
+    max-width: 440px;
+    margin-bottom: 48px;
+    animation: fadeUp 0.8s 0.3s ease both;
+  }
+
+  .hero-cta {
+    display: flex; gap: 16px; flex-wrap: wrap;
+    animation: fadeUp 0.8s 0.45s ease both;
+  }
+
+  .btn-primary {
+    background: var(--accent);
+    color: #0d0d0d;
+    padding: 14px 32px;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: opacity 0.3s, transform 0.3s;
+    display: inline-block;
+  }
+
+  .btn-primary:hover { opacity: 0.85; transform: translateY(-2px); }
+
+  .btn-outline {
+    background: transparent;
+    color: var(--text);
+    padding: 14px 32px;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: 1px solid var(--border);
+    cursor: pointer;
+    transition: border-color 0.3s, color 0.3s, transform 0.3s;
+    display: inline-block;
+  }
+
+  .btn-outline:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
+
+  /* HERO RIGHT */
+  .hero-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 24px;
+    animation: fadeUp 0.8s 0.5s ease both;
+  }
+
+  .stat-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 28px 36px;
+    width: 220px;
+    position: relative;
+  }
+
+  .stat-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 3px; height: 100%;
+    background: var(--accent);
+  }
+
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 40px;
+    font-weight: 700;
+    color: var(--accent);
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+
+  .stat-label {
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  /* ABOUT */
+  .about {
+    padding: 120px 48px;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 80px;
+    align-items: start;
+    border-top: 1px solid var(--border);
+  }
+
+  .section-label {
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 16px;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(32px, 4vw, 48px);
+    font-weight: 700;
+    line-height: 1.1;
+  }
+
+  .about-body p {
+    font-size: 16px;
+    line-height: 1.8;
+    color: var(--muted);
+    margin-bottom: 24px;
+  }
+
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin-top: 40px;
+  }
+
+  .skill-tag {
+    background: var(--accent-dim);
+    border: 1px solid var(--border);
+    padding: 10px 16px;
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    color: var(--accent);
+  }
+
+  /* EXPERIENCE */
+  .experience {
+    padding: 120px 48px;
+    border-top: 1px solid var(--border);
+    background: var(--surface);
+  }
+
+  .exp-header {
+    margin-bottom: 64px;
+  }
+
+  .exp-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+  }
+
+  .exp-card {
+    background: var(--bg);
+    padding: 40px 32px;
+    border: 1px solid transparent;
+    transition: border-color 0.3s, transform 0.3s;
+    cursor: default;
+  }
+
+  .exp-card:hover {
+    border-color: var(--border);
+    transform: translateY(-4px);
+  }
+
+  .exp-period {
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 16px;
+  }
+
+  .exp-role {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    line-height: 1.2;
+  }
+
+  .exp-org {
+    font-size: 13px;
+    color: var(--muted);
+    margin-bottom: 20px;
+  }
+
+  .exp-desc {
+    font-size: 13px;
+    line-height: 1.7;
+    color: var(--muted);
+  }
+
+  /* CONTACT */
+  .contact {
+    padding: 120px 48px;
+    border-top: 1px solid var(--border);
+    text-align: center;
+  }
+
+  .contact-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(36px, 5vw, 64px);
+    font-weight: 900;
+    margin-bottom: 24px;
+  }
+
+  .contact-title span { color: var(--accent); }
+
+  .contact-sub {
+    font-size: 16px;
+    color: var(--muted);
+    margin-bottom: 48px;
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.7;
+  }
+
+  .contact-links {
+    display: flex;
+    justify-content: center;
+    gap: 32px;
+    flex-wrap: wrap;
+  }
+
+  .contact-link {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 14px;
+    letter-spacing: 0.05em;
+    transition: color 0.3s;
+  }
+
+  .contact-link:hover { color: var(--accent); }
+
+  /* FOOTER */
+  footer {
+    padding: 32px 48px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  footer p { font-size: 12px; color: var(--muted); letter-spacing: 0.05em; }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    nav { padding: 20px 24px; }
+    .nav-links { display: none; }
+    .hero { grid-template-columns: 1fr; padding: 100px 24px 60px; gap: 48px; }
+    .hero-right { align-items: flex-start; flex-direction: row; flex-wrap: wrap; }
+    .stat-card { width: 160px; padding: 20px 24px; }
+    .stat-num { font-size: 28px; }
+    .about { grid-template-columns: 1fr; gap: 40px; padding: 80px 24px; }
+    .skills-grid { grid-template-columns: 1fr; }
+    .exp-grid { grid-template-columns: 1fr; }
+    .experience, .contact { padding: 80px 24px; }
+    footer { padding: 24px; flex-direction: column; gap: 8px; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">J.M. Ombati</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <div class="hero-text">
+    <div class="hero-tag">Mechanical Engineer &middot; Nairobi, Kenya</div>
+    <h1 class="hero-name">Joshua<br><span>Masasi</span><br>Ombati</h1>
+    <p class="hero-sub">Mechanical Engineering graduate with hands-on experience in quality control, industrial maintenance, and technical operations — with a growing focus on renewable energy and HVAC systems.</p>
+    <div class="hero-cta">
+      <a href="#contact" class="btn-primary">Get in Touch</a>
+      <a href="#experience" class="btn-outline">View Experience</a>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="stat-card">
+      <div class="stat-num">3+</div>
+      <div class="stat-label">Years Experience</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">ISO</div>
+      <div class="stat-label">9001:2015 QMS</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">EBK</div>
+      <div class="stat-label">Registered Engineer</div>
+    </div>
+  </div>
+</section>
+
+<section class="about" id="about">
+  <div class="about-head">
+    <p class="section-label">About</p>
+    <h2 class="section-title">Engineer.<br>Analyst.<br>Problem Solver.</h2>
+  </div>
+  <div class="about-body">
+    <p>I hold a BSc in Mechanical Engineering from Dedan Kimathi University of Technology and am a registered Graduate Engineer with the Engineers Board of Kenya. My work spans quality control, machinery maintenance, compliance reporting, and client-facing operations.</p>
+    <p>I am particularly interested in HVAC systems, renewable energy, industrial maintenance, and mechanical system design — areas where technical rigour and real-world impact intersect.</p>
+    <div class="skills-grid">
+      <div class="skill-tag">Quality Control & Assurance</div>
+      <div class="skill-tag">Machinery Maintenance</div>
+      <div class="skill-tag">Renewable Energy</div>
+      <div class="skill-tag">HVAC Systems</div>
+      <div class="skill-tag">Technical Reporting</div>
+      <div class="skill-tag">OHS Compliance</div>
+      <div class="skill-tag">SolidWorks & CAD</div>
+      <div class="skill-tag">CRM & Digital Tools</div>
+    </div>
+  </div>
+</section>
+
+<section class="experience" id="experience">
+  <div class="exp-header">
+    <p class="section-label">Experience</p>
+    <h2 class="section-title">Where I Have Worked</h2>
+  </div>
+  <div class="exp-grid">
+    <div class="exp-card">
+      <div class="exp-period">Aug 2023 — Present</div>
+      <div class="exp-role">Research Assistant</div>
+      <div class="exp-org">Rarebird Edtech Consulting</div>
+      <div class="exp-desc">Structured technology research, lead generation, and email marketing campaign execution via Mailchimp and Zoho.</div>
+    </div>
+    <div class="exp-card">
+      <div class="exp-period">May 2023 — Oct 2025</div>
+      <div class="exp-role">Executive Assistant</div>
+      <div class="exp-org">BQ Retreats</div>
+      <div class="exp-desc">CRM management in Pipedrive, social media outreach, document preparation, and executive calendar coordination.</div>
+    </div>
+    <div class="exp-card">
+      <div class="exp-period">Nov 2022 — Nov 2023</div>
+      <div class="exp-role">Quality Control Engineer</div>
+      <div class="exp-org">Colour Labels Limited</div>
+      <div class="exp-desc">Production compliance, machine performance monitoring, ISO 9001:2015 QMS re-certification, and operator training.</div>
+    </div>
+    <div class="exp-card">
+      <div class="exp-period">Feb 2022 — May 2022</div>
+      <div class="exp-role">Mechanical Engineering Attaché</div>
+      <div class="exp-org">County Government of Nyeri</div>
+      <div class="exp-desc">Fault diagnosis on petrol and diesel engines, servicing of heavy commercial vehicles, and fleet maintenance documentation.</div>
+    </div>
+    <div class="exp-card">
+      <div class="exp-period">Feb 2020 — Mar 2020</div>
+      <div class="exp-role">Mechanical Engineering Attaché</div>
+      <div class="exp-org">Nyansiongo Tea Factory</div>
+      <div class="exp-desc">Lathe operations, arc welding, milling, conveyor repairs, and industrial machinery maintenance across an active production floor.</div>
+    </div>
+    <div class="exp-card">
+      <div class="exp-period">Jan 2019 — Mar 2019</div>
+      <div class="exp-role">Mechanical Engineering Attaché</div>
+      <div class="exp-org">ADMATC, DeKUT</div>
+      <div class="exp-desc">CAD drawings using SolidWorks and Inventor; led a team in the production and assembly of filing systems.</div>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <h2 class="contact-title">Let's <span>Work</span><br>Together</h2>
+  <p class="contact-sub">Open to mechanical engineering roles, renewable energy projects, and technical operations opportunities across Kenya.</p>
+  <div class="contact-links">
+    <a href="mailto:joshuaombati246@gmail.com" class="contact-link">✉ joshuaombati246@gmail.com</a>
+    <a href="tel:+254721451871" class="contact-link">✆ +254 721 451 871</a>
+    <a href="https://linkedin.com/in/joshua-ombati" class="contact-link" target="_blank">⇗ LinkedIn</a>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 Joshua Masasi Ombati</p>
+  <p>Nairobi, Kenya &middot; EBK Registered Graduate Engineer</p>
+</footer>
+
+</body>
+</html>
